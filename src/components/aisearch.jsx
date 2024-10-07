@@ -9,12 +9,12 @@ const AISearch = () => {
     const [loading, setLoading] = useState(false);
 
     const handleAISearch = async () => {
-        const prompt = `You are an AI recommendation system named QuickAI. Provide the best response possible for this prompt - ${searchText.current.value}. Never begin your response with a question. Just reply to the best of your ability`
+        const prompt = `You are an AI recommendation system named QuickAI. Provide the best response possible for this prompt - ${searchText.current.value}. Never begin your response with a question. Just reply to the best of your ability.`
         try{
             setLoading(true);
             setError(null);
             const gptResult = await openai.generateContent(prompt)
-            const response = gptResult.response;
+            const response = gptResult.response;    
             const text = response.text();
             if(!text){
                 setLoading(false);
