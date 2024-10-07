@@ -15,7 +15,7 @@ const AISearch = () => {
             setError(null);
             const gptResult = await openai.generateContent(prompt)
             const response = gptResult.response;    
-            const text = response.text();
+            const text = response.text();   
             if(!text){
                 setLoading(false);
                 return;
@@ -30,11 +30,15 @@ const AISearch = () => {
         }
     }    
 
+    const handleKeyDown = (event) => {
+        if(event.key === "Enter"){handleAISearch()};
+    }
+
     return (
         <div className="container-fluid py-5 w-75">
             <h2 className="text-center">QuickAI</h2>
             <div className="d-flex">
-                <input type="text" placeholder="What's on your mind today?" className="form-control" ref={searchText}/>
+                <input type="text" placeholder="What's on your mind today?" className="form-control" ref={searchText} onKeyDown={handleKeyDown}/>
                 <button className="btn btn-info text-nowrap" onClick={handleAISearch}>Search</button>
             </div>
             {
