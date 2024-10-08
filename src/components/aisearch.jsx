@@ -10,44 +10,44 @@ const AISearch = () => {
 
     const handleAISearch = async () => {
         const prompt = `You are an AI recommendation system named QuickAI. Provide the best response possible for this prompt - ${searchText.current.value}. Never begin your response with a question. Just reply to the best of your ability.`
-        try{
+        try {
             setLoading(true);
             setError(null);
             const gptResult = await openai.generateContent(prompt)
-            const response = gptResult.response;    
-            const text = response.text();   
-            if(!text){
+            const response = gptResult.response;
+            const text = response.text();
+            if (!text) {
                 setLoading(false);
                 return;
             }
             setSearchResult(text);
-        } 
-        catch(error){
+        }
+        catch (error) {
             setError(error);
         }
-        finally{
+        finally {
             setLoading(false)
         }
-    }    
+    }
 
     const handleKeyDown = (event) => {
-        if(event.key === "Enter"){handleAISearch()};
+        if (event.key === "Enter") { handleAISearch() };
     }
 
     return (
         <div className="container-fluid py-5 w-75">
             <h2 className="text-center">QuickAI</h2>
             <div className="d-flex">
-                <input type="text" placeholder="What's on your mind today?" className="form-control" ref={searchText} onKeyDown={handleKeyDown}/>
+                <input type="text" placeholder="What's on your mind today?" className="form-control" ref={searchText} onKeyDown={handleKeyDown} />
                 <button className="btn btn-info text-nowrap" onClick={handleAISearch}>Search</button>
             </div>
             {
-                loading ?(
+                loading ? (
                     <h3>Loading...</h3>
                 ) : (
                     searchResult && (
                         <div className="border border-1 border-secondary rounded my-2 p-4">
-                        <ReactMarkDown>{searchResult}</ReactMarkDown>
+                            <ReactMarkDown>{searchResult}</ReactMarkDown>
                         </div>
                     )
                 )
