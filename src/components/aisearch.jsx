@@ -43,7 +43,9 @@ const AISearch = () => {
             </div>
             {
                 loading ? (
-                    <h3>Loading...</h3>
+                    <div className="border border-1 border-secondary rounded my-2 p-4 justify-content-md-center">
+                    <h3 >Loading...</h3>
+                    </div>
                 ) : (
                     searchResult && (
                         <div className="border border-1 border-secondary rounded my-2 p-4">
