@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
-import openai from "../utils/openapi";
 import ReactMarkDown from "react-markdown";
+import axios from "axios";
+
 
 const AISearch = () => {
     const searchText = useRef();
@@ -13,23 +14,17 @@ const AISearch = () => {
         try {
             setLoading(true);
             setError(null);
-            const gptResult = await openai.generateContent(prompt)
-            const response = gptResult.response;
-            const text = response.text();
-            if (!text) {
-                setLoading(false);
-                return;
-            }
-            setSearchResult(text);
+            const {data} = await axios.post("/api/ai", {prompt}) // gemini api route
+          
+            setSearchResult(data.response);
         }
         catch (error) {
-            setError(error);
+            setError("An error occured while fetching a response");
         }
         finally {
             setLoading(false)
         }
     }
-
     const handleKeyDown = (event) => {
         if (event.key === "Enter") { handleAISearch() };
     }
@@ -44,7 +39,7 @@ const AISearch = () => {
             {
                 loading ? (
                     <div className="border border-1 border-secondary rounded my-2 p-4 justify-content-md-center">
-                    <h3 >Loading...</h3>
+                        <h3 >Loading...</h3>
                     </div>
                 ) : (
                     searchResult && (

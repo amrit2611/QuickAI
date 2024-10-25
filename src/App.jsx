@@ -1,6 +1,4 @@
-import './App.css'
 import AISearch from './components/aisearch'
-
 
 
 function App() {
