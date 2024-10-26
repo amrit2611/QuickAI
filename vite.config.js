@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 dotenv.config();
 
 
-const apiUrl = `${process.env.REACT_APP_BACKEND_URL}:8080`;
+const apiUrl = process.env.REACT_APP_BACKEND_URL;
 
 export default defineConfig({
   plugins: [react()],
@@ -13,7 +13,7 @@ export default defineConfig({
       '/api': {
         target: apiUrl,
         changeOrigin: true,   
-        secure: false,
+        secure: true,
       },
     },
   },
