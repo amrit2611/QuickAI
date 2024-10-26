@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 dotenv.config();
 
 
-const apiUrl = process.env.REACT_APP_BACKEND_URL;
+const apiUrl = process.env.VITE_BASE_API_URL;
 
 export default defineConfig({
   plugins: [react()],

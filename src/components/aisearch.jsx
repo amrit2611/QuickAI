@@ -14,7 +14,7 @@ const AISearch = () => {
         try {
             setLoading(true);
             setError(null);
-            const {data} = await axios.post("/api/ai", {prompt}) // gemini api route
+            const {data} = await axios.post(`${import.meta.env.VITE_BASE_API_URL}/api/ai`, {prompt}) // gemini api route
           
             setSearchResult(data.response);
         }
