@@ -15,7 +15,6 @@ const AISearch = () => {
             setLoading(true);
             setError(null);
             const {data} = await axios.post(`${import.meta.env.VITE_BASE_API_URL}/api/ai`, {prompt}) // gemini api route
-          
             setSearchResult(data.response);
         }
         catch (error) {
@@ -28,7 +27,6 @@ const AISearch = () => {
     const handleKeyDown = (event) => {
         if (event.key === "Enter") { handleAISearch() };
     }
-
     return (
         <div className="container-fluid py-5 w-75">
             <h2 className="text-center">QuickAI</h2>
@@ -52,5 +50,4 @@ const AISearch = () => {
         </div>
     )
 };
-
 export default AISearch;
