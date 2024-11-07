@@ -3,7 +3,7 @@ import AISearch from './components/aisearch'
 
 function App() {
   return (
-    <div className='bg-dark text-light vh-100'>
+    <div className="bg-neutral-800 text-white min-h-screen pt-3">
       <AISearch />
     </div>
   )
