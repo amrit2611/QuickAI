@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import ReactMarkDown from "react-markdown";
 import axios from "axios";
+import { Button } from "./ui/button";
 
 
 const AISearch = () => {
@@ -14,7 +15,7 @@ const AISearch = () => {
         try {
             setLoading(true);
             setError(null);
-            const {data} = await axios.post(`${import.meta.env.VITE_BASE_API_URL}/api/ai`, {prompt}) // gemini api route
+            const { data } = await axios.post(`${import.meta.env.VITE_BASE_API_URL}/api/ai`, { prompt }) // gemini api route
             setSearchResult(data.response);
         }
         catch (error) {
@@ -28,26 +29,39 @@ const AISearch = () => {
         if (event.key === "Enter") { handleAISearch() };
     }
     return (
-        <div className="container-fluid py-5 w-75">
-            <h2 className="text-center">QuickAI</h2>
-            <div className="d-flex">
-                <input type="text" placeholder="What's on your mind today?" className="form-control" ref={searchText} onKeyDown={handleKeyDown} />
-                <button className="btn btn-info text-nowrap" onClick={handleAISearch}>Search</button>
-            </div>
-            {
-                loading ? (
-                    <div className="border border-1 border-secondary rounded my-2 p-4 justify-content-md-center">
-                        <h3 >Loading...</h3>
-                    </div>
-                ) : (
-                    searchResult && (
-                        <div className="border border-1 border-secondary rounded my-2 p-4">
-                            <ReactMarkDown>{searchResult}</ReactMarkDown>
+        <>
+            <div className="w py-5 px-10 mx-auto mt-40" >
+                <div className="mb-6 text-center p-3 text-4xl font-mono">QuickAI</div>
+                <div className="flex mx-auto w-4/6 border border-black rounded-lg ">
+                    <input
+                        type="text"
+                        placeholder="What's on your mind today?"
+                        className="flex-grow p-2 pl-4 bg-black  rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        ref={searchText}
+                        onKeyDown={handleKeyDown}
+                    />
+                    <button
+                        className=" text-white rounded-lg whitespace-nowrap hover:bg-blue-600 transition duration-200 border min-w-20"
+                        onClick={handleAISearch}
+                    >
+                        Search
+                    </button>
+                </div>
+                {
+                    loading ? (
+                        <div className="border border-gray-400 rounded-lg w-4/6 my-2 mx-auto p-4 flex justify-center">
+                            <h3>Loading...</h3>
                         </div>
+                    ) : (
+                        searchResult && (
+                            <div className="border border-gray-400 rounded my-2 p-4">
+                                <ReactMarkDown>{searchResult}</ReactMarkDown>
+                            </div>
+                        )
                     )
-                )
-            }
-        </div>
+                }
+            </div>
+        </>
     )
 };
 export default AISearch;
