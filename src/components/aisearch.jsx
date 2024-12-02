@@ -54,7 +54,7 @@ const AISearch = () => {
                         </div>
                     ) : (
                         searchResult && (
-                            <div className="border border-gray-400 rounded-lg w-4/6 mx-auto my-2 p-4">
+                            <div className="border border-gray-400 rounded-lg w-4/6 my-2 mx-auto p-4 flex">
                                 <ReactMarkDown>{searchResult}</ReactMarkDown>
                             </div>
                         )
