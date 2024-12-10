@@ -30,7 +30,7 @@ const AISearch = () => {
     }
     return (
         <>
-            <div className="w py-5 px-10 mx-auto mt-40" >
+            <div className="w py-5 px-auto mx-auto mt-40" >
                 <div className="mb-6 text-center p-3 text-4xl font-mono">QuickAI</div>
                 <div className="flex mx-auto w-4/6 border border-black rounded-lg ">
                     <input
