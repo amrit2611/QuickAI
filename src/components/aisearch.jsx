@@ -1,14 +1,15 @@
 import React, { useRef, useState } from "react";
 import ReactMarkDown from "react-markdown";
 import axios from "axios";
-import { Button } from "./ui/button";
-
+import "./../App"
+import { Card2 } from "./Card2";
+import { SendIcon } from "./icons/SendIcon";
 
 const AISearch = () => {
     const searchText = useRef();
     const [searchResult, setSearchResult] = useState("");
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const handleAISearch = async () => {
         const prompt = `You are an AI recommendation system named QuickAI. Provide the best response possible for this prompt - ${searchText.current.value}. Never begin your response with a question. Just reply to the best of your ability.`
@@ -30,36 +31,41 @@ const AISearch = () => {
     }
     return (
         <>
-            <div className="w py-5 px-auto mx-auto mt-40" >
-                <div className="mb-6 text-center p-3 text-4xl font-mono">QuickAI</div>
-                <div className="flex mx-auto w-4/6 border border-black rounded-lg ">
-                    <input
-                        type="text"
-                        placeholder="What's on your mind today?"
-                        className="flex-grow p-2 pl-4 bg-black  rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        ref={searchText}
-                        onKeyDown={handleKeyDown}
-                    />
-                    <button
-                        className=" text-white rounded-lg whitespace-nowrap hover:bg-blue-600 transition duration-200 border min-w-20"
-                        onClick={handleAISearch}
-                    >
-                        Search
-                    </button>
-                </div>
-                {
-                    loading ? (
-                        <div className="border border-gray-400 rounded-lg w-4/6 my-2 mx-auto p-4 flex justify-center">
-                            <h3>Loading...</h3>
+            <div className="bg-stone-700 flex justify-center h-screen">
+                <div className="my-auto">
+                    <div className=" w-screen text-center p-5 bg-stone-600 text-4xl font-mono fixed top-0 left-1/2 -translate-x-1/2 border">QuickAI</div>
+                    <div className="my-auto border-2 border-stone-800 rounded-3xl py-10 px-5 hover:border-blue-500 hover:shadow hover:shadow-xl w-4/5 mx-auto hover:bg-stone-600 sm:w-full transition-all duration-300 ease-in-out">
+                        <div className="mb-15 text-2xl">Try <span className="text-3xl text-stone-500 font-bold  hover:text-blue-500 transition-all duration-300 ease-in-out">QuickAI</span> , your Gemini powered assistant. <br/>Just chat like you would with any other AI tool</div>
+                        <div className="flex border border-gray-600 p-2 bg-stone-900 rounded-lg h-12">
+                            <input
+                                type="text"
+                                placeholder="What's on your mind today?"
+                                className="w-full p-2 bg-stone-900 rounded-lg focus:outline-none text-white outline-none"
+                                ref={searchText}
+                                onKeyDown={handleKeyDown}
+                            />
+                            <button
+                                className=" text-white rounded-lg whitespace-nowrap transition duration-200 border-none"
+                                onClick={handleAISearch}
+                            >
+                                <SendIcon />
+                            </button>
                         </div>
-                    ) : (
-                        searchResult && (
-                            <div className="border border-gray-400 rounded-lg w-4/6 my-2 mx-auto p-4 flex">
-                                <ReactMarkDown>{searchResult}</ReactMarkDown>
-                            </div>
-                        )
-                    )
-                }
+                        {
+                            loading ? (
+                                <div className=" text-white my-2 mx-auto p-4 flex justify-center">
+                                    <h3>Loading...</h3>
+                                </div>
+                            ) : (
+                                searchResult && (
+                                    <div className="text-white my-2 mx-auto p-4">
+                                        <ReactMarkDown>{searchResult}</ReactMarkDown>
+                                    </div>
+                                )
+                            )
+                        }
+                    </div>
+                </div>
             </div>
         </>
     )

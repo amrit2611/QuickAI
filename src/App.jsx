@@ -1,11 +1,9 @@
 import AISearch from './components/aisearch'
-
+import "./App.css"
 
 function App() {
   return (
-    <div className="bg-neutral-800 text-white min-h-screen pt-3">
       <AISearch />
-    </div>
   )
 }
 
