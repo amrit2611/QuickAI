@@ -9,7 +9,7 @@ const AISearch = () => {
     const searchText = useRef();
     const [searchResult, setSearchResult] = useState("");
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const handleAISearch = async () => {
         const prompt = `You are an AI recommendation system named QuickAI. Provide the best response possible for this prompt - ${searchText.current.value}. Never begin your response with a question. Just reply to the best of your ability.`
